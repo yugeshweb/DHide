@@ -1,18 +1,26 @@
-/* ─── Reset & base ─────────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* Basic reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 :root {
-  --bg:          #0a0a0a;
-  --surface:     #111111;
-  --border:      #1e1e1e;
-  --text:        #f0f0f0;
-  --muted:       #555;
-  --accent:      #ffffff;
-  --active-bg:   #1a1a1a;
-  --active-glow: rgba(255,255,255,0.06);
-  --danger:      #ff4d4d;
-  --success:     #4dff91;
-  --font-mono:   'Courier New', Courier, monospace;
+  --bg: #0a0a0a;
+  --surface: #111;
+  --border: #1e1e1e;
+
+  --text: #f0f0f0;
+  --muted: #555;
+
+  --accent: #fff;
+  --success: #4dff91;
+
+  --active-glow: rgba(255, 255, 255, 0.06);
+
+  --font-mono: "Courier New", Courier, monospace;
 }
 
 body {
@@ -24,7 +32,6 @@ body {
   overflow: hidden;
 }
 
-/* ─── Container ─────────────────────────────────────────────────── */
 .container {
   display: flex;
   flex-direction: column;
@@ -33,15 +40,15 @@ body {
   gap: 18px;
 }
 
-/* ─── Brand ─────────────────────────────────────────────────────── */
+/* Brand */
 .brand {
   display: flex;
   align-items: center;
   gap: 6px;
-  letter-spacing: 0.4em;
   font-size: 10px;
-  color: var(--muted);
+  letter-spacing: 0.4em;
   text-transform: uppercase;
+  color: var(--muted);
 }
 
 .brand-dot {
@@ -54,10 +61,10 @@ body {
 
 @keyframes blink {
   0%, 100% { opacity: 1; }
-  50%       { opacity: 0.2; }
+  50% { opacity: 0.2; }
 }
 
-/* ─── Button wrapper (for pulse ring) ──────────────────────────── */
+/* Button area */
 .button-wrapper {
   position: relative;
   display: flex;
@@ -65,24 +72,26 @@ body {
   justify-content: center;
 }
 
-/* ─── Main button ───────────────────────────────────────────────── */
 .hide-btn {
-  position: relative;
-  z-index: 1;
   width: 80px;
   height: 80px;
   border-radius: 50%;
   border: 1.5px solid var(--border);
   background: var(--surface);
   color: var(--text);
-  cursor: pointer;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 5px;
-  transition: background 0.2s, border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+
+  cursor: pointer;
   outline: none;
+  transition: background 0.2s ease,
+              border-color 0.2s ease,
+              transform 0.15s ease,
+              box-shadow 0.2s ease;
 }
 
 .hide-btn:hover {
@@ -96,7 +105,6 @@ body {
 }
 
 .hide-btn .btn-label {
-  font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -107,23 +115,22 @@ body {
   width: 16px;
   height: 16px;
   opacity: 0.5;
-  transition: opacity 0.2s;
+  transition: opacity 0.2s ease;
 }
 
-/* ─── Active state ──────────────────────────────────────────────── */
+/* Active state */
 .hide-btn.active {
   background: var(--accent);
   border-color: var(--accent);
   color: #000;
-  box-shadow: 0 0 30px rgba(255,255,255,0.15);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.15);
 }
 
 .hide-btn.active .btn-icon {
   opacity: 0.6;
-  /* Switch to "eye open" path in JS */
 }
 
-/* Pulse ring — only animates when active */
+/* Pulse ring (only visible when active) */
 .pulse-ring {
   position: absolute;
   width: 80px;
@@ -134,45 +141,56 @@ body {
 }
 
 .pulse-ring.animating {
-  border-color: rgba(255,255,255,0.3);
+  border-color: rgba(255, 255, 255, 0.3);
   animation: pulse 1.8s ease-out infinite;
 }
 
 @keyframes pulse {
-  0%   { transform: scale(1);   opacity: 0.6; }
-  100% { transform: scale(1.6); opacity: 0; }
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
 }
 
-/* ─── Status text ───────────────────────────────────────────────── */
+/* Status text */
 .status-text {
   font-size: 10px;
-  color: var(--muted);
   letter-spacing: 0.05em;
   text-align: center;
   min-height: 14px;
-  transition: color 0.3s;
+  color: var(--muted);
+  transition: color 0.3s ease;
 }
 
 .status-text.active {
   color: var(--success);
 }
 
-/* ─── Info bar ──────────────────────────────────────────────────── */
+/* Info bar */
 .info-bar {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
+
+  width: 100%;
+  min-height: 28px;
+  padding: 6px 12px;
+
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 4px;
-  padding: 6px 12px;
+
   font-size: 9px;
-  color: var(--muted);
   letter-spacing: 0.05em;
-  width: 100%;
-  justify-content: center;
-  min-height: 28px;
-  transition: border-color 0.3s, color 0.3s;
+  color: var(--muted);
+
+  transition: border-color 0.3s ease,
+              color 0.3s ease;
 }
 
 .info-bar.has-fields {
