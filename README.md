@@ -1,5 +1,7 @@
 # DHide
 
+[Available on Chrome Web Store](https://chromewebstore.google.com/detail/hide/fafccabgmiklojcjapbfegebolaielol)
+
 DHide is a lightweight Chrome extension built with Manifest V3 that
 blurs sensitive and interactive form fields on webpages to protect user
 privacy while browsing.
